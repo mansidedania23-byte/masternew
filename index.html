@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="vie wport" content="width=device-width, initial-scale=1.0" />
+    <title>Shivam's Birthday Universe</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <video class="page-background-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
+      <source src="a31cd4105ebee5234c40a4c361b0d8b5_720w.mp4" type="video/mp4" />
+    </video>
+    <canvas id="starsCanvas"></canvas>
+
+    <div class="page-shell">
+      <section class="screen active" id="unlock-screen">
+        <div class="panel">
+          <div class="unlock-wrap">
+            <div class="star-core" id="unlockStar" aria-hidden="true"></div>
+            <h1 class="headline">Every star has a story. Tonight, this one begins with yours.</h1>
+            <input class="birthday-input" id="birthdayInput" type="text" maxlength="10" placeholder="DD/MM/YYYY" aria-label="Birthday" />
+            <p class="unlock-error" id="unlockError" role="alert" aria-live="polite"></p>
+            <button class="primary-btn unlock-btn" id="unlockBtn"><span>LET THE MAGIC BEGIN</span><span class="unlock-btn-sparkle" aria-hidden="true">✦</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="birthday-video-screen">
+        <div class="panel birthday-video-panel">
+          <div class="birthday-video-frame" id="birthdayVideoFrame">
+            <video class="birthday-video" id="birthdayVideo" controls preload="metadata" playsinline>
+              <source src="birthday-video.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+            <button class="birthday-video-play" id="birthdayVideoPlay" type="button" aria-label="Play birthday video">▶</button>
+            <p class="birthday-video-status" id="birthdayVideoStatus" role="status" aria-live="polite"></p>
+          </div>
+          <button class="primary-btn" id="birthdayVideoContinue">CONTINUE TO YOUR NEXT STAR <span class="button-sparkle" aria-hidden="true">✦</span></button>
+        </div>
+      </section>
+
+      <section class="screen" id="surprise-screen">
+        <div class="panel">
+          <div class="surprise-wrap">
+            <div class="shooting-star" aria-hidden="true"></div>
+            <div class="surprise-star" id="surpriseStar"></div>
+            <h2 class="headline text-reveal">One little star led you here. Let’s see where the rest take you.</h2>
+            <button class="primary-btn" id="followStarsBtn">FOLLOW THE STARS <span class="button-sparkle" aria-hidden="true">✦</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen wish-prompt-screen" id="wish-prompt-screen" tabindex="0" aria-label="Wish prompt. Click or press Enter to continue.">
+        <div class="panel wish-prompt-panel">
+          <div class="wish-prompt-star" aria-hidden="true">✦</div>
+          <h2 class="headline">If the universe gave you one wish… what would you pick?</h2>
+        </div>
+      </section>
+
+      <section class="screen" id="gift-screen">
+        <div class="panel gift-panel">
+          <h2 class="headline">Choose wisely. I’m taking notes… don’t say I never listen. <span class="heading-emoji">👀😂</span></h2>
+
+          <div class="gift-grid" id="giftGrid" aria-label="Choose a birthday wish category">
+            <button class="gift-card" type="button" data-label="Star" aria-pressed="false">
+              <span class="glow-orb"></span>
+              <svg class="gift-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                <path d="m24 8-5 5-9 4 4 7 6-2v18h16V22l6 2 4-7-9-4-5-5" />
+                <path d="M19 13c0 3 2 5 5 5s5-2 5-5" />
+              </svg>
+              <span class="gift-label">Style</span><span class="gift-description">Something to wear or an accessory.</span>
+            </button>
+            <button class="gift-card" type="button" data-label="Useful One" aria-pressed="false">
+              <span class="glow-orb"></span>
+              <svg class="gift-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                <rect x="8" y="9" width="32" height="24" rx="2" />
+                <path d="M4 38h40l-4-5H8l-4 5Z" />
+                <path d="M20 36h8" />
+              </svg>
+              <span class="gift-label">The Useful One</span><span class="gift-description">A gadget or something useful.</span>
+            </button>
+            <button class="gift-card" type="button" data-label="Little Treat" aria-pressed="false">
+              <span class="glow-orb"></span>
+              <svg class="gift-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                <path d="M8 24h32v16H8z" />
+                <path d="M8 29c4-4 8 4 12 0s8 4 12 0 8 4 8 0" />
+                <path d="M14 20c-2-3 2-4 0-7m10 7c-2-3 2-4 0-7m10 7c-2-3 2-4 0-7" />
+                <path d="M6 41h36" />
+              </svg>
+              <span class="gift-label">A Little Treat</span><span class="gift-description">Food, dessert, or an outing together.</span>
+            </button>
+            <button class="gift-card" type="button" data-label="Keep" aria-pressed="false">
+              <span class="glow-orb"></span>
+              <svg class="gift-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                <path d="M16 20c0-7 3-12 8-12s8 5 8 12" />
+                <path d="M24 18 12 28v12h24V28L24 18Z" />
+                <path d="M24 34s-5-3.1-5-6.2a2.8 2.8 0 0 1 5-1.7 2.8 2.8 0 0 1 5 1.7c0 3.1-5 6.2-5 6.2Z" />
+              </svg>
+              <span class="gift-label">Something to Keep</span><span class="gift-description">A sentimental gift with a story behind it.</span>
+            </button>
+            <button class="gift-card" type="button" data-label="New Memory" aria-pressed="false">
+              <span class="glow-orb"></span>
+              <svg class="gift-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                <circle cx="35" cy="12" r="5" />
+                <path d="m5 37 12-15 8 9 6-7 12 13H5Z" />
+                <path d="M10 37c4-4 8-4 12 0s8 4 12 0 7-4 10 0" />
+              </svg>
+              <span class="gift-label">A New Memory</span><span class="gift-description">An experience, adventure, or something different.</span>
+            </button>
+            <button class="gift-card" type="button" data-label="Surprise Me" aria-pressed="false">
+              <span class="glow-orb"></span>
+              <svg class="gift-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                <path d="M7 20h34v22H7zM5 14h38v7H5zM24 14v28" />
+                <path d="M24 14c-7 0-12-1-12-5 0-2 2-3 4-3 5 0 8 8 8 8Zm0 0c7 0 12-1 12-5 0-2-2-3-4-3-5 0-8 8-8 8Z" />
+              </svg>
+              <span class="gift-label">Surprise Me</span><span class="gift-description">You decide. Surprise me!</span>
+            </button>
+          </div>
+
+          <div class="gift-form">
+            <label class="wish-label" id="wishLabel" for="wishInput">Choose a category to tell me what you have in mind</label>
+            <textarea class="wish-input" id="wishInput" placeholder="Type an exact item or describe what you’re imagining…" aria-describedby="wishError" disabled></textarea>
+            <p class="wish-error" id="wishError" role="alert" hidden>Please describe the gift you have in mind before continuing.</p>
+            <button class="gift-submit" id="wishSubmit" disabled>SEND MY WISH TO THE UNIVERSE <span class="button-sparkle" aria-hidden="true">✦</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="bridge-screen">
+        <div class="panel">
+          <h2 class="headline">One wish sent. But your birthday luck is just getting started.</h2>
+          <p class="subtext">Because birthday boy deserves a little extra luck. 😌</p>
+          <button class="primary-btn" id="luckBtn">LET THE STARS DECIDE <span class="button-sparkle" aria-hidden="true">✦</span></button>
+        </div>
+      </section>
+
+      <section class="screen" id="wheel-screen">
+        <div class="panel">
+          <h2 class="headline">Let’s see what birthday magic has in store for you.</h2>
+          <p class="subtext">You have 3 spins. Manifest wisely, Mr. Lucky. 🤭</p>
+
+          <div class="wheel-stage">
+            <div class="wheel-shell" id="wheelShell" role="img" aria-label="Birthday reward wheel with eight possible rewards">
+              <div class="wheel-ring"></div>
+              <span class="wheel-label" style="--label-x: 62.2%; --label-y: 20.4%;">Birthday Boy<br>Privileges 👑</span>
+              <span class="wheel-label" style="--label-x: 79.6%; --label-y: 37.8%;">Your Wishlist,<br>My Mission 🎁</span>
+              <span class="wheel-label" style="--label-x: 79.6%; --label-y: 62.2%;">One Day, One<br>Adventure 🎡</span>
+              <span class="wheel-label" style="--label-x: 62.2%; --label-y: 79.6%;">A Little Healing,<br>From Me 🤍</span>
+              <span class="wheel-label" style="--label-x: 37.8%; --label-y: 79.6%;">The Teasing<br>Pass 😏</span>
+              <span class="wheel-label" style="--label-x: 20.4%; --label-y: 62.2%;">The Honest<br>Answer 🎤</span>
+              <span class="wheel-label" style="--label-x: 20.4%; --label-y: 37.8%;">Instant Mood<br>Booster 🍫</span>
+              <span class="wheel-label" style="--label-x: 37.8%; --label-y: 20.4%;">The Getaway<br>Pass ✈️</span>
+            </div>
+            <div class="pointer" aria-hidden="true"></div>
+            <div class="spin-counter" id="spinCounter">3 SPINS LEFT</div>
+            <button class="primary-btn" id="spinBtn">LET THE STARS DECIDE <span class="button-sparkle" aria-hidden="true">✦</span></button>
+          </div>
+
+          <div class="reward-card" id="rewardCard" role="status" aria-live="polite">
+            <strong id="rewardTitle">Reward</strong>
+            <p class="reward-meta" id="rewardDesc"></p>
+            <button class="collect-btn" id="collectRewardBtn" style="margin-top: 16px;">COLLECT MY REWARD 🎁</button>
+          </div>
+
+          <div class="closing-line" id="wheelFinalLine">The stars have spoken. Your birthday privileges are now officially in orbit. 😌</div>
+          <button class="primary-btn" id="fortuneBtn" style="display:none; margin-top:18px;">OPEN YOUR FORTUNE <span class="button-sparkle" aria-hidden="true">✦</span></button>
+        </div>
+      </section>
+
+      <section class="screen" id="fortune-screen">
+        <div class="panel">
+          <h2 class="headline">The universe sent you a message. Don't leave it on read. <span class="fortune-heading-emoji">🤭</span></h2>
+          <div class="fortune-box">
+            <div class="fortune-cookie-wrap">
+              <button class="fortune-cookie" id="fortuneCookie" type="button" aria-label="Break open the fortune cookie">
+                <svg class="fortune-cookie-art" viewBox="0 0 200 160" aria-hidden="true" focusable="false">
+                  <defs>
+                    <linearGradient id="cookieGold" x1="0" y1="0" x2="0.8" y2="1">
+                      <stop offset="0" stop-color="#fff0bd" />
+                      <stop offset="0.42" stop-color="#e9cc84" />
+                      <stop offset="0.76" stop-color="#d1a65e" />
+                      <stop offset="1" stop-color="#b77c3c" />
+                    </linearGradient>
+                    <pattern id="cookieCrumbs" width="22" height="20" patternUnits="userSpaceOnUse">
+                      <circle cx="4" cy="6" r="1.2" fill="#9b6937" opacity="0.25" />
+                      <circle cx="15" cy="14" r="0.9" fill="#fff7d9" opacity="0.62" />
+                      <circle cx="20" cy="3" r="0.7" fill="#a66c37" opacity="0.22" />
+                    </pattern>
+                  </defs>
+                  <g class="fortune-cookie-left">
+                    <path d="M100 76C78 52 47 26 21 37 0 46 8 78 31 96c19 15 49 16 69 49Z" fill="url(#cookieGold)" stroke="#a9743d" stroke-width="2.5" stroke-linejoin="round" />
+                    <path d="M100 76C78 52 47 26 21 37 0 46 8 78 31 96c19 15 49 16 69 49Z" fill="url(#cookieCrumbs)" />
+                    <path d="M22 45c17-8 43 4 63 24M18 58c17 9 33 24 42 39" fill="none" stroke="#fff4d3" stroke-linecap="round" stroke-width="2" opacity="0.38" />
+                  </g>
+                  <g class="fortune-cookie-right">
+                    <path d="M100 76c22-24 53-50 79-39 21 9 13 41-10 59-19 15-49 16-69 49Z" fill="url(#cookieGold)" stroke="#a9743d" stroke-width="2.5" stroke-linejoin="round" />
+                    <path d="M100 76c22-24 53-50 79-39 21 9 13 41 10 59-19 15-49 16-69 49Z" fill="url(#cookieCrumbs)" />
+                    <path d="M178 45c-17-8-43 4-63 24m65-11c-17 9-33 24-42 39" fill="none" stroke="#fff4d3" stroke-linecap="round" stroke-width="2" opacity="0.38" />
+                  </g>
+                </svg>
+              </button>
+              <div class="fortune-note" id="fortuneNote" role="status" aria-live="polite"></div>
+            </div>
+            <button class="next-star-btn" id="nextStarBtn" style="display:none;">FOLLOW YOUR NEXT STAR <span class="button-sparkle" aria-hidden="true">✦</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="memory-screen">
+        <div class="panel">
+          <h2 class="headline">Some memories don’t need a reason to make you smile.</h2>
+          <div class="memory-grid" id="memoryGrid">
+            <div class="polaroid" data-caption="This one still makes me smile." style="--tilt: -5deg;"><div class="polaroid-thumb"><img class="polaroid-photo" src="IMG-20230401-WA0003.jpg" alt="" aria-hidden="true" loading="lazy"></div><div class="caption">This one still makes me smile.</div></div>
+            <div class="polaroid" data-caption="A moment I wish I could pause." style="--tilt: 4deg;"><div class="polaroid-thumb"><img class="polaroid-photo" src="IMG-20250801-WA0004.jpg" alt="" aria-hidden="true" loading="lazy"></div><div class="caption">A moment I wish I could pause.</div></div>
+            <div class="polaroid" data-caption="Some memories stay brighter than others." style="--tilt: -2deg;"><div class="polaroid-thumb"><img class="polaroid-photo" src="Snapchat-1414732409.jpg" alt="" aria-hidden="true" loading="lazy"></div><div class="caption">Some memories stay brighter than others.</div></div>
+            <div class="polaroid" data-caption="If I could revisit one little moment, this might be it." style="--tilt: 4deg;"><div class="polaroid-thumb"><img class="polaroid-photo" src="IMG_20230330_192014.jpg" alt="" aria-hidden="true" loading="lazy"></div><div class="caption">If I could revisit one little moment, this might be it.</div></div>
+            <div class="polaroid" data-caption="A tiny piece of our story, saved right here." style="--tilt: -3deg;"><div class="polaroid-thumb"><img class="polaroid-photo" src="Snapchat-2055373908.jpg" alt="" aria-hidden="true" loading="lazy"></div><div class="caption">A tiny piece of our story, saved right here.</div></div>
+            <div class="polaroid" data-caption="Some memories stay brighter than others." style="--tilt: 5deg;"><div class="polaroid-thumb"><img class="polaroid-photo" src="Screenshot_20250205-135023.jpg" alt="" aria-hidden="true" loading="lazy"></div><div class="caption">Some memories stay brighter than others.</div></div>
+            <div class="polaroid" data-caption="The little in-between moments are my favorite." style="--tilt: -4deg;"><div class="polaroid-thumb"><img class="polaroid-photo" src="IMG-20250324-WA0004.jpg" alt="" aria-hidden="true" loading="lazy"></div><div class="caption">The little in-between moments are my favorite.</div></div>
+            <div class="polaroid" data-caption="A snapshot from one of our favorite days." style="--tilt: 3deg;"><div class="polaroid-thumb"><img class="polaroid-photo" src="Snapchat-757064110.jpg" alt="" aria-hidden="true" loading="lazy"></div><div class="caption">A snapshot from one of our favorite days.</div></div>
+            <div class="polaroid" data-caption="A tiny piece of our story, saved right here." style="--tilt: -2deg;"><div class="polaroid-thumb"><img class="polaroid-photo" src="IMG-20241205-WA0000.jpg" alt="" aria-hidden="true" loading="lazy"></div><div class="caption">A tiny piece of our story, saved right here.</div></div>
+            <div class="polaroid" data-caption="Here’s to all the moments still waiting for us." style="--tilt: 5deg;"><div class="polaroid-thumb"><img class="polaroid-photo" src="Screenshot_20240301-232156.jpg" alt="" aria-hidden="true" loading="lazy"></div><div class="caption">Here’s to all the moments still waiting for us.</div></div>
+            <div class="polaroid" data-caption="A little moment I want to keep close." style="--tilt: -4deg;"><div class="polaroid-thumb"><video class="polaroid-video" src="9b8f6bf29a3240d6a13623d445eeeccf.mov" muted loop autoplay playsinline preload="metadata" aria-hidden="true"></video></div><div class="caption">A little moment I want to keep close.</div></div>
+            <div class="polaroid" data-caption="One of those memories that feels like us." style="--tilt: 3deg;"><div class="polaroid-thumb"><video class="polaroid-video" src="2a1a14a176f043bcbeecf4bbddc19901.mov" muted loop autoplay playsinline preload="metadata" aria-hidden="true"></video></div><div class="caption">One of those memories that feels like us.</div></div>
+          </div>
+          <button class="primary-btn" id="memoryNextBtn">LET’S SEE WHERE OUR STARS LEAD <span class="button-sparkle" aria-hidden="true">✦</span></button>
+        </div>
+      </section>
+
+      <section class="screen" id="question-screen">
+        <div class="panel">
+          <h2 class="headline">Would you be open to seeing where our story could go?</h2>
+          <div class="question-choices">
+            <button class="yes-btn" id="yesBtn">YES, LET’S SEE ❤️</button>
+            <button class="talk-btn" id="talkBtn">LET’S TALK ABOUT IT <span class="button-sparkle" aria-hidden="true">✦</span></button>
+          </div>
+          <div class="decision-stars" id="decisionStars" aria-hidden="true">
+            <span class="decision-star decision-star-one">✦</span>
+            <span class="decision-star decision-star-two">✦</span>
+            <span class="decision-star-burst"></span>
+          </div>
+          <div class="choice-message" id="choiceMessage"></div>
+        </div>
+      </section>
+
+      <section class="screen final-screen" id="final-screen" tabindex="0" aria-label="Final birthday message. Tap anywhere after reading to see the ending.">
+        <div class="panel final-panel">
+          <p class="final-intro">I hope this little universe gave my favourite star one more reason to smile. ❤️</p>
+          <h1 class="headline final-headline" style="margin-top: 0;">HAPPY BIRTHDAY, SHIVAM! <span class="birthday-heading-emoji">🎂✨</span></h1>
+
+          <div class="final-message">
+            <p class="final-message-paragraph">Even when I can’t be right beside you, I hope my wishes and prayers find their way to you.</p>
+            <p class="final-message-paragraph">I hope this year brings you the happiness you deserve, the opportunities you dream of, and the peace that makes everything feel right. May you keep growing into the person you want to be, chase every dream that makes your eyes light up, and find a thousand reasons to smile.</p>
+            <p class="final-message-paragraph">May your universe shine brighter than ever — with or without me. And if life lets our stars shine together, I hope we make something beautiful of it. ❤️</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="photo-modal" id="photoModal" aria-label="Memory detail">
+      <div class="modal-card">
+        <div class="modal-image"><img class="modal-photo" alt=""><video class="modal-video" controls playsinline hidden></video></div>
+        <div class="modal-caption">Some memories stay brighter than others.</div>
+      </div>
+    </div>
+
+    <div class="entry-flash" id="entryFlash" aria-hidden="true"></div>
+    <div class="screen-transition-star" id="screenTransitionStar" aria-hidden="true"></div>
+    <audio id="cosmicMusic" loop preload="none"></audio>
+    <audio id="entryChime" preload="none"></audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
